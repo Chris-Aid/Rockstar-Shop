@@ -1,0 +1,39 @@
+.toolbar {
+  height: 80px;
+  background-color: rgb(175, 123, 25);
+  justify-content: space-between;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+.basketContainer {
+  position: relative;
+}
+
+.basketIcon {
+  height: 50px;
+}
+
+.amountOfItems {
+  border-radius: 100%;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: -10px;
+  bottom: 0px;
+  height: 25px;
+  width: 25px;
+
+
+  p {
+    color: white;
+    margin: 0;
+    width: auto;
+  }
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
