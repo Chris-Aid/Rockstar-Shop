@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-shop',
@@ -7,9 +8,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopComponent implements OnInit {
 
-  constructor() { }
+  items;
+  flipped = false;
+
+  constructor(public shared: SharedService) { }
 
   ngOnInit(): void {
+    this.fethItems();
   }
 
+  fethItems() {
+    fetch('https://fakestoreapi.com/products')
+      .then(res => res.json())
+      .then(json => {
+        this.items = json;
+        console.log(this.items)
+      });
+  }
+
+  over(i) {
+    console.log("Mouseover event called");
+    document.getElementById(`cardBack${i}`).classList.remove('flipCardBack')
+    document.getElementById(`cardBack${i}`).classList.add('addToBasket')
+  }
+
+  out(i) {
+    document.getElementById(`cardBack${i}`).classList.add('flipCardBack')
+    document.getElementById(`cardBack${i}`).classList.remove('addToBasket')
+  }
+
+  saveToBasket(i) {
+    this.shared.basket.push(this.items[i])
+    console.log(this.shared.basket)
+
+    document.getElementById(`product${i}`).style.display = 'flex';
+  }
 }
