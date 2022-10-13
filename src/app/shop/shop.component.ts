@@ -10,6 +10,8 @@ export class ShopComponent implements OnInit {
 
   items;
   flipped = false;
+  itemsLimit = 10;
+  maxItems = false;
 
   constructor(public shared: SharedService) { }
 
@@ -18,7 +20,7 @@ export class ShopComponent implements OnInit {
   }
 
   fethItems() {
-    fetch('https://fakestoreapi.com/products')
+    fetch(`https://fakestoreapi.com/products?limit=${this.itemsLimit}`)
       .then(res => res.json())
       .then(json => {
         this.items = json;
@@ -49,13 +51,25 @@ export class ShopComponent implements OnInit {
     document.getElementById(`product${i}`).style.display = 'flex';
   }
 
+  moreItems() {
+    this.maxItems = true;
+    this.itemsLimit = 20;
+    this.fethItems();
+  }
+
+  lessItems() {
+    this.maxItems = false;
+    this.itemsLimit = 10;
+    this.fethItems();
+  }
+
   over(i) {
-    document.getElementById(`cardBack${i}`).classList.remove('flipCardBack')
+    document.getElementById(`cardBack${i}`).classList.remove('moveCardBack')
     document.getElementById(`cardBack${i}`).classList.add('addToBasket')
   }
 
   out(i) {
-    document.getElementById(`cardBack${i}`).classList.add('flipCardBack')
+    document.getElementById(`cardBack${i}`).classList.add('moveCardBack')
     document.getElementById(`cardBack${i}`).classList.remove('addToBasket')
   }
 }

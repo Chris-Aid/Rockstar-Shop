@@ -14,6 +14,10 @@
   cursor: pointer;
   overflow: hidden;
 
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
   .mat-card-title {
 
     font-size: 16px;
@@ -40,9 +44,10 @@
   align-items: center;
   position: absolute;
   background-color: rgba(255, 255, 255, 0.712);
-  height: 80%;
+  height: 0%;
   width: 70%;
   padding: 32px;
+  bottom: 0;
   transform: translateX(300px);
 
   h2 {
@@ -67,13 +72,13 @@
   }
 }
 
-.flipCardBack {
+.moveCardBack {
   animation: flipBack 125ms ease-in-out;
   transform: rotateY(0deg);
   transform: translateX(300px)
 }
 
-@keyframes flipBack {
+@keyframes moveBack {
   0% {
     transform: translateX(0);
   }
@@ -84,7 +89,7 @@
 }
 
 .addIcon {
-  height: 100px !important;
+  height: 50px !important;
 }
 
 .added {
@@ -94,4 +99,14 @@
   font-weight: 600;
   color: green;
   bottom: 32px;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.itemBtn {
+  background-color: orange;
 }

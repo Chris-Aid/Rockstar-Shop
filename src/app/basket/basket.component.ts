@@ -34,14 +34,12 @@ export class BasketComponent implements OnInit {
     for (let i = 0; i < this.shared.basket.length; i++) {
       const prices = this.shared.basket[i].price;
       const amounts = this.shared.basket[i].amount;
-
       this.subtotal += +prices * amounts;
     }
 
     this.getShipping();
-
     this.sum = this.subtotal + this.shipping;
-
+    window.localStorage.setItem('items', JSON.stringify(this.shared.basket));
   }
 
   getShipping() {
