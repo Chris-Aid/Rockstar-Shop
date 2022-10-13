@@ -10,6 +10,7 @@ import { ShopComponent } from './shop/shop.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BasketComponent } from './basket/basket.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BasketComponent } from './basket/basket.component';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

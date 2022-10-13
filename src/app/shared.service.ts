@@ -8,4 +8,8 @@ export class SharedService {
   basket = [];
 
   constructor() { }
+
+  // getItems() {
+  //   return JSON.parse(window.localStorage.getItem('items'))
+  // }
 }
