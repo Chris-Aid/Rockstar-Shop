@@ -22,7 +22,15 @@ export class ShopComponent implements OnInit {
       .then(res => res.json())
       .then(json => {
         this.items = json;
+        this.addAmount();
       });
+  }
+
+  addAmount() {
+    for (let i = 0; i < this.items.length; i++) {
+      const item = this.items[i];
+      item['amount'] = 1;
+    }
   }
 
   saveToBasket(i) {
@@ -34,14 +42,12 @@ export class ShopComponent implements OnInit {
     });
 
     if (!alreadyExists) {
-      this.shared.basket.push(this.items[i])
+      this.shared.basket.push(this.items[i]);
     }
 
     window.localStorage.setItem('items', JSON.stringify(this.shared.basket));
     document.getElementById(`product${i}`).style.display = 'flex';
   }
-
-
 
   over(i) {
     document.getElementById(`cardBack${i}`).classList.remove('flipCardBack')

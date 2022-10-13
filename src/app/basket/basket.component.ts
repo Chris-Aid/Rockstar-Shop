@@ -8,9 +8,10 @@ import { SharedService } from '../shared.service';
 })
 export class BasketComponent implements OnInit {
 
-  myBasket;
 
-  minimumAmount: number = 25;
+  amount: number = 1;
+
+  minimumAmount: number = 100;
   shipping: number;
   subtotal: number = 0;
   sum: number = 0;
@@ -29,13 +30,18 @@ export class BasketComponent implements OnInit {
   }
 
   getSum() {
+    this.subtotal = 0;
     for (let i = 0; i < this.shared.basket.length; i++) {
       const prices = this.shared.basket[i].price;
-      this.subtotal += +prices;
+      const amounts = this.shared.basket[i].amount;
+
+      this.subtotal += +prices * amounts;
     }
+
     this.getShipping();
+
     this.sum = this.subtotal + this.shipping;
-    console.log(this.sum)
+
   }
 
   getShipping() {
@@ -44,5 +50,25 @@ export class BasketComponent implements OnInit {
     } else {
       this.shipping = 0;
     }
+  }
+
+  increaseAmount(i) {
+    let a = this.shared.basket[i]['amount'];
+    a++
+    this.shared.basket[i]['amount'] = a;
+    this.getSum();
+
+  }
+
+  reduceAmount(i) {
+    if (this.shared.basket[i].amount > 1) {
+      let a = this.shared.basket[i].amount;
+      a--;
+      this.shared.basket[i]['amount'] = a;
+    } else {
+      this.shared.basket.splice(i, 1)
+    }
+
+    this.getSum();
   }
 }

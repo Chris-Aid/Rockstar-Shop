@@ -7,15 +7,15 @@
           <img class="basketImage" src={{item.image}} alt="basket item">
           <div class="description">
             <p>{{item.title}}</p>
-            <p>{{item.price}} €</p>
+            <p>{{(item.price * item.amount).toFixed(2)}} €</p>
           </div>
         </div>
         <div class="editIcons">
-          <img class="editIcon" src="assets/img/add.png" alt="add icon">
+          <img (click)="increaseAmount(i)" class="editIcon" src="assets/img/add.png" alt="add icon">
           <div class="amountOfItems">
-            <p>1</p>
+            <p>{{item.amount}}</p>
           </div>
-          <img class="editIcon" src="assets/img/remove.png" alt="add icon">
+          <img (click)="reduceAmount(i)" class="editIcon" src="assets/img/remove.png" alt="add icon">
         </div>
       </mat-card>
     </div>
@@ -24,17 +24,17 @@
       <div class="priceContainer">
         <div class="prices">
           <p>Zwischensumme</p>
-          <p>{{subtotal}} €</p>
+          <p>{{subtotal.toFixed(2)}} €</p>
         </div>
         <div class="prices">
           <p>Versandkosten</p>
-          <p>{{shipping}} €</p>
+          <p>{{shipping.toFixed(2)}} €</p>
         </div>
       </div>
       <div class="sum">
         <div class="prices">
           <p style="font-weight: 700;">Gesamtsumme</p>
-          <p>{{sum}} €</p>
+          <p>{{sum.toFixed(2)}} €</p>
         </div>
         <span>inkl. 19% MwSt.</span>
       </div>
