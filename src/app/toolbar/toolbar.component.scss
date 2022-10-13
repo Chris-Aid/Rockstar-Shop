@@ -6,8 +6,13 @@
   padding-right: 64px;
 }
 
+.mainContainer {
+  padding: 64px;
+}
+
 .basketContainer {
   position: relative;
+  cursor: pointer;
 }
 
 .basketIcon {
@@ -35,6 +40,14 @@
   }
 }
 
-.example-spacer {
-  flex: 1 1 auto;
-}
+// .example-spacer {
+//   flex: 1 1 auto;
+// }
+
+// .matContainer {
+
+//   .mat-drawer-inner-container {
+//     height: 100vh !important;
+//     width: 300px !important;
+//   }
+// }

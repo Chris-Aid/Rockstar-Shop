@@ -1,10 +1,20 @@
-<mat-toolbar class="toolbar">
-  <h2>Rockstar shop</h2>
+<mat-drawer-container class="matContainer" autosize>
+  <mat-drawer #drawer class="matDrawer" mode="side" position="end">
+    <h1>Basket</h1>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+  </mat-drawer>
 
-  <div class="basketContainer">
-    <img src="assets/img/basket.png" class="basketIcon">
-    <div class="amountOfItems">
-      <p>{{shared.basket.length}}</p>
+  <mat-toolbar class="toolbar">
+    <h2>Rockstar shop</h2>
+
+    <div class="basketContainer">
+      <img (click)="drawer.toggle()" src="assets/img/basket.png" class="basketIcon">
+      <div *ngIf="shared.basket.length > 0" class="amountOfItems">
+        <p>{{shared.basket.length}}</p>
+      </div>
     </div>
+  </mat-toolbar>
+  <div class="mainContainer">
+    <router-outlet></router-outlet>
   </div>
-</mat-toolbar>
+</mat-drawer-container>
