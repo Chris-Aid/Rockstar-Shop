@@ -1,0 +1,21 @@
+.item {
+  margin-bottom: 24px;
+}
+
+.basketImage {
+  height: 180px;
+}
+
+.itemContent {
+  display: flex;
+}
+
+.description {
+  width: 400px;
+  padding-top: 12px;
+  padding-left: 32px;
+
+  p {
+    margin-top: 12px;
+  }
+}

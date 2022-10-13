@@ -1,0 +1,10 @@
+<h2>Your items</h2>
+<mat-card class="item" *ngFor="let item of shared.basket; let i = index">
+  <p>{{item.title}}</p>
+  <div class="itemContent">
+    <img class="basketImage" src={{item.image}} alt="basket item">
+    <div class="description">
+      <p>{{item.description}}</p>
+    </div>
+  </div>
+</mat-card>

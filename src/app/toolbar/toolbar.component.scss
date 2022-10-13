@@ -4,10 +4,10 @@
   justify-content: space-between;
   padding-left: 64px;
   padding-right: 64px;
-}
 
-.mainContainer {
-  padding: 64px;
+  h2 {
+    cursor: pointer;
+  }
 }
 
 .basketContainer {
@@ -40,14 +40,17 @@
   }
 }
 
-// .example-spacer {
-//   flex: 1 1 auto;
-// }
+.matContainer {
 
-// .matContainer {
+  .headline {
+    background-color: #f3a20ae8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+  }
+}
 
-//   .mat-drawer-inner-container {
-//     height: 100vh !important;
-//     width: 300px !important;
-//   }
-// }
+.basket {
+  padding: 32px;
+}

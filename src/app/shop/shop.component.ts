@@ -22,12 +22,10 @@ export class ShopComponent implements OnInit {
       .then(res => res.json())
       .then(json => {
         this.items = json;
-        console.log(this.items)
       });
   }
 
   over(i) {
-    console.log("Mouseover event called");
     document.getElementById(`cardBack${i}`).classList.remove('flipCardBack')
     document.getElementById(`cardBack${i}`).classList.add('addToBasket')
   }
@@ -39,7 +37,8 @@ export class ShopComponent implements OnInit {
 
   saveToBasket(i) {
     this.shared.basket.push(this.items[i])
-    console.log(this.shared.basket)
+
+    window.localStorage.setItem('items', JSON.stringify(this.shared.basket));
 
     document.getElementById(`product${i}`).style.display = 'flex';
   }
