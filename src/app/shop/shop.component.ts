@@ -32,7 +32,9 @@ export class ShopComponent implements OnInit {
   }
 
   getItemsFromLocalStorage() {
-    this.shared.basket = JSON.parse(window.localStorage.getItem('items'));
+    if (this.shared.basket.length > 1) {
+      this.shared.basket = JSON.parse(window.localStorage.getItem('items'));
+    }
   }
 
   // function updates objects that are stored in array and adds amount for price calculation

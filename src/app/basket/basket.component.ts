@@ -22,7 +22,9 @@ export class BasketComponent implements OnInit {
 
   // gets item that are stored in basket
   getItemsFromLocalStorage() {
-    this.shared.basket = JSON.parse(window.localStorage.getItem('items'));
+    if (this.shared.basket.length > 0) {
+      this.shared.basket = JSON.parse(window.localStorage.getItem('items'));
+    }
     this.getShipping();
     this.getSum();
   }
