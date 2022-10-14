@@ -1,11 +1,10 @@
 .toolbar {
   height: 80px;
-  background-color: rgb(175, 123, 25);
+  background-color: #cd662fed;
   justify-content: space-between;
-  padding-left: 64px;
-  padding-right: 64px;
 
-  h2 {
+  img {
+    height: 60px;
     cursor: pointer;
   }
 }
@@ -16,7 +15,7 @@
 }
 
 .basketIcon {
-  height: 50px;
+  height: 50px !important;
 }
 
 .amountOfItems {
@@ -31,7 +30,6 @@
   height: 25px;
   width: 25px;
 
-
   p {
     color: white;
     margin: 0;
@@ -43,7 +41,7 @@
 .matContainer {
 
   .headline {
-    background-color: #f3a20ae8;
+    background-color: #cd662fed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,4 +51,20 @@
 
 .basket {
   padding: 32px;
+}
+
+/* Medium devices (landscape tablets, 700px and up) */
+@media only screen and (min-width: 700px) {
+  .toolbar {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .toolbar {
+    padding-left: 128px;
+    padding-right: 128px;
+  }
 }

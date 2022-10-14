@@ -1,26 +1,24 @@
-<!-- <h2>My items</h2> -->
-<div class="itemContainer">
-  <mat-card id="card{{i}}" (mouseover)='over(i)' (mouseout)='out(i)' *ngFor="let item of items; let i = index"
-    class="itemCard">
-    <div class="cardContent">
-      <img src={{item.image}} alt="product image">
-      <mat-card-header>
-        <mat-card-title>{{item.title}}</mat-card-title>
-        <mat-card-title>{{item.price}} €</mat-card-title>
-        <mat-card-subtitle>{{item.category}}</mat-card-subtitle>
-      </mat-card-header>
-    </div>
-    <div (click)="saveToBasket(i)" id="cardBack{{i}}" class="cardSlider">
-      <img class="addIcon" src="assets/img/addToBasket.png" alt="add item">
-
-      <div id="product{{i}}" class="added">
-        <p>product added</p>
+<div class="gridContainer">
+  <mat-card (mouseover)="over(i)" (mouseout)="out(i)" (click)="saveToBasket(i)" id="card{{i}}"
+    *ngFor="let item of items; let i = index" class="itemCard">
+    <img src={{item.image}} alt="product image">
+    <mat-card-header>
+      <mat-card-title>{{item.title}}</mat-card-title>
+      <mat-card-title>{{item.price}} €</mat-card-title>
+      <mat-card-subtitle>{{item.category}}</mat-card-subtitle>
+    </mat-card-header>
+    <div id="cardBack{{i}}" (click)="saveToBasket(i)" class="cardSlider">
+      <div style="position: relative;">
+        <div *ngIf="getAmount(i) > 0" class="amountInfo">
+          <p>{{getAmount(i)}}</p>
+        </div>
+        <img class="addIcon" src="assets/img/addToBasket.png" alt="add item">
       </div>
     </div>
   </mat-card>
-  <div class="btnContainer">
-    <button *ngIf="!maxItems" (click)="moreItems()" class="itemBtn" mat-raised-button>Show more
-      products</button>
-    <button *ngIf="maxItems" (click)="lessItems()" class="itemBtn" mat-raised-button>Show less products</button>
-  </div>
+</div>
+<div class="btnContainer">
+  <button *ngIf="!maxItems" (click)="moreItems()" class="itemBtn" mat-raised-button>Show more
+    products</button>
+  <button *ngIf="maxItems" (click)="lessItems()" class="itemBtn" mat-raised-button>Show less products</button>
 </div>

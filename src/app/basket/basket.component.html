@@ -1,13 +1,17 @@
 <div class="basketSection">
-  <h1>Your items</h1>
+  <!-- <h1>Your items</h1> -->
   <div class="basketContent">
+    <div class="emptyBasket" *ngIf="shared.basket.length < 1">
+      <h2>Derzeit befinden sich keine Artikel in Ihrem Warenkorb</h2>
+      <button routerLink="" mat-raised-button>Zum Store</button>
+    </div>
     <div class="itemContainer">
       <mat-card class="item" *ngFor="let item of shared.basket; let i = index">
         <div class="itemContent">
           <img class="basketImage" src={{item.image}} alt="basket item">
-          <div class="description">
+          <div class="itemPrices">
             <p>{{item.title}}</p>
-            <p>{{(item.price * item.amount).toFixed(2)}} €</p>
+            <span>{{(item.price * item.amount).toFixed(2)}} €</span>
           </div>
         </div>
         <div class="editIcons">
@@ -41,7 +45,10 @@
         <span>inkl. 19% MwSt.</span>
       </div>
 
-      <button class="orderBtn" mat-raised-button>Zur Kasse</button>
+      <button style="background-color: #d1713ea3; margin-top: 24px;" *ngIf="shared.basket.length > 0" routerLink=""
+        mat-raised-button>Weiter
+        shoppen</button>
+      <button style="background-color: lightgrey;" class="orderBtn" mat-raised-button>Zur Kasse</button>
     </mat-card>
   </div>
 </div>

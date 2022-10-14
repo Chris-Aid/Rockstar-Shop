@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, setTestabilityGetter, ViewChild } from '@angular/core';
 import { SharedService } from '../shared.service';
 
 @Component({
@@ -8,15 +8,19 @@ import { SharedService } from '../shared.service';
 })
 export class ShopComponent implements OnInit {
 
+  hover: boolean = false;
+
+  constructor(public shared: SharedService) { }
+
   items;
   flipped = false;
   itemsLimit = 10;
   maxItems = false;
 
-  constructor(public shared: SharedService) { }
 
   ngOnInit(): void {
     this.fethItems();
+    this.getItemsFromLocalStorage();
   }
 
   fethItems() {
@@ -26,6 +30,10 @@ export class ShopComponent implements OnInit {
         this.items = json;
         this.addAmount();
       });
+  }
+
+  getItemsFromLocalStorage() {
+    this.shared.basket = JSON.parse(window.localStorage.getItem('items'));
   }
 
   addAmount() {
@@ -45,10 +53,23 @@ export class ShopComponent implements OnInit {
 
     if (!alreadyExists) {
       this.shared.basket.push(this.items[i]);
+    } else {
+      this.increaseAmount(i)
     }
 
     window.localStorage.setItem('items', JSON.stringify(this.shared.basket));
-    document.getElementById(`product${i}`).style.display = 'flex';
+  }
+
+  increaseAmount(i) {
+    for (let j = 0; j < this.shared.basket.length; j++) {
+      const basketItem = this.shared.basket[j];
+
+      if (this.items[i].title == basketItem.title) {
+        let currentAmount = basketItem.amount;
+        currentAmount++;
+        this.shared.basket[j]['amount'] = currentAmount;
+      }
+    }
   }
 
   moreItems() {
@@ -71,5 +92,16 @@ export class ShopComponent implements OnInit {
   out(i) {
     document.getElementById(`cardBack${i}`).classList.add('moveCardBack')
     document.getElementById(`cardBack${i}`).classList.remove('addToBasket')
+  }
+
+  getAmount(i) {
+    for (let j = 0; j < this.shared.basket.length; j++) {
+      const basketItem = this.shared.basket[j];
+
+      if (this.items[i].title == basketItem.title) {
+        let currentAmount = basketItem.amount;
+        return currentAmount;
+      }
+    }
   }
 }

@@ -20,7 +20,6 @@ export class BasketComponent implements OnInit {
 
   ngOnInit(): void {
     this.getItemsFromLocalStorage();
-    console.log(this.shared.basket)
   }
 
   getItemsFromLocalStorage() {
@@ -43,7 +42,7 @@ export class BasketComponent implements OnInit {
   }
 
   getShipping() {
-    if (this.subtotal < this.minimumAmount) {
+    if (this.subtotal < this.minimumAmount && this.subtotal > 0) {
       this.shipping = 4.99;
     } else {
       this.shipping = 0;
@@ -55,7 +54,6 @@ export class BasketComponent implements OnInit {
     a++
     this.shared.basket[i]['amount'] = a;
     this.getSum();
-
   }
 
   reduceAmount(i) {
