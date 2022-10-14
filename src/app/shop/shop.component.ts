@@ -44,7 +44,11 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  saveToBasket(item, i) {
+  /**
+ * pushes product item to Basket if it isn't already inside
+ * @param item - product item
+ */
+  saveToBasket(item) {
     // finding out if item was already pushed to basket
     const alreadyExists = this.shared.basket.some(element => {
       if (element.title === item.title) {
@@ -63,7 +67,10 @@ export class ShopComponent implements OnInit {
     window.localStorage.setItem('items', JSON.stringify(this.shared.basket));
   }
 
-  // function figures out which item was clicket and increased right amount
+  /**
+  * function figures out which item was clicked and increased right amount
+  * @param item - product item
+  */
   increaseAmount(item) {
     for (let j = 0; j < this.shared.basket.length; j++) {
       const basketItem = this.shared.basket[j];
@@ -90,7 +97,10 @@ export class ShopComponent implements OnInit {
     this.fethItems();
   }
 
-  // function finds out the amount of each product in basket
+  /**
+  * function finds out the amount of each product in basket
+  * @param item - product item
+  */
   getAmount(item) {
     for (let j = 0; j < this.shared.basket.length; j++) {
       const basketItem = this.shared.basket[j];
@@ -102,7 +112,10 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  // following functions add some animation on hover products
+  /**
+  * function finds out the amount of each product in basket
+  * @param i - index of cards
+  */
   over(i) {
     document.getElementById(`cardBack${i}`).classList.remove('moveCardBack')
     document.getElementById(`cardBack${i}`).classList.add('addToBasket')

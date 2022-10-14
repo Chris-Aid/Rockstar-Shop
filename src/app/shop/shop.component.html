@@ -6,7 +6,7 @@
 </div>
 
 <div class="gridContainer">
-  <mat-card (mouseover)="over(i)" (mouseout)="out(i)" (click)="saveToBasket(item, i)" id="card{{i}}"
+  <mat-card (mouseover)="over(i)" (mouseout)="out(i)" (click)="saveToBasket(item)" id="card{{i}}"
     *ngFor="let item of items | filter : category; let i = index" class="itemCard">
     <img src={{item.image}} alt="product image">
     <mat-card-header>
@@ -14,7 +14,7 @@
       <mat-card-title>{{item.price.toFixed(2)}} €</mat-card-title>
       <mat-card-subtitle>{{item.category}}</mat-card-subtitle>
     </mat-card-header>
-    <div id="cardBack{{i}}" (click)="saveToBasket(item, i)" class="cardSlider">
+    <div id="cardBack{{i}}" (click)="saveToBasket(item)" class="cardSlider">
       <div style="position: relative;">
         <div *ngIf="getAmount(item) > 0" class="amountInfo">
           <p>{{getAmount(item)}}</p>

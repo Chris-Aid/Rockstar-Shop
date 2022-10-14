@@ -8,8 +8,6 @@ import { SharedService } from '../shared.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  showFiller = false;
-
   constructor(public shared: SharedService) { }
 
   ngOnInit(): void {

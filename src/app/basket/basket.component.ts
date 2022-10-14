@@ -52,6 +52,10 @@ export class BasketComponent implements OnInit {
     }
   }
 
+  /**
+  * increased quantity of basket item
+  * @param i - index of basket item
+  */
   increaseAmount(i) {
     let a = this.shared.basket[i]['amount'];
     a++
@@ -60,6 +64,10 @@ export class BasketComponent implements OnInit {
     this.getSum();
   }
 
+  /**
+  * reduces quantity of basket item
+  * @param i - product item
+  */
   reduceAmount(i) {
     if (this.shared.basket[i].amount > 1) {
       let a = this.shared.basket[i].amount;
