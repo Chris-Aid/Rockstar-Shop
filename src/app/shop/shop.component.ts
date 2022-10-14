@@ -29,7 +29,6 @@ export class ShopComponent implements OnInit {
       .then(json => {
         this.items = json;
         this.addAmount();
-        console.log(this.items)
       });
   }
 
@@ -58,19 +57,18 @@ export class ShopComponent implements OnInit {
     if (!alreadyExists) {
       this.shared.basket.push(item);
     } else {
-      this.increaseAmount(i)
+      this.increaseAmount(item)
     }
 
     window.localStorage.setItem('items', JSON.stringify(this.shared.basket));
-    console.log(i)
   }
 
   // function figures out which item was clicket and increased right amount
-  increaseAmount(i) {
+  increaseAmount(item) {
     for (let j = 0; j < this.shared.basket.length; j++) {
       const basketItem = this.shared.basket[j];
 
-      if (this.items[i].title == basketItem.title) {
+      if (item.title == basketItem.title) {
         let currentAmount = basketItem.amount;
         currentAmount++;
         this.shared.basket[j]['amount'] = currentAmount;
@@ -92,16 +90,6 @@ export class ShopComponent implements OnInit {
     this.fethItems();
   }
 
-  over(i) {
-    document.getElementById(`cardBack${i}`).classList.remove('moveCardBack')
-    document.getElementById(`cardBack${i}`).classList.add('addToBasket')
-  }
-
-  out(i) {
-    document.getElementById(`cardBack${i}`).classList.add('moveCardBack')
-    document.getElementById(`cardBack${i}`).classList.remove('addToBasket')
-  }
-
   // function finds out the amount of each product in basket
   getAmount(item) {
     for (let j = 0; j < this.shared.basket.length; j++) {
@@ -112,5 +100,16 @@ export class ShopComponent implements OnInit {
         return currentAmount;
       }
     }
+  }
+
+  // following functions add some animation on hover products
+  over(i) {
+    document.getElementById(`cardBack${i}`).classList.remove('moveCardBack')
+    document.getElementById(`cardBack${i}`).classList.add('addToBasket')
+  }
+
+  out(i) {
+    document.getElementById(`cardBack${i}`).classList.add('moveCardBack')
+    document.getElementById(`cardBack${i}`).classList.remove('addToBasket')
   }
 }

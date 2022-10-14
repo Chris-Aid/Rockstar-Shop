@@ -11,7 +11,7 @@
     <img src={{item.image}} alt="product image">
     <mat-card-header>
       <mat-card-title>{{item.title}}</mat-card-title>
-      <mat-card-title>{{item.price}} €</mat-card-title>
+      <mat-card-title>{{item.price.toFixed(2)}} €</mat-card-title>
       <mat-card-subtitle>{{item.category}}</mat-card-subtitle>
     </mat-card-header>
     <div id="cardBack{{i}}" (click)="saveToBasket(item, i)" class="cardSlider">
