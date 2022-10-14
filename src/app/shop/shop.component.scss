@@ -5,6 +5,11 @@
   grid-gap: 32px;
 }
 
+.optionContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .itemCard {
   display: flex;
   flex-direction: column;

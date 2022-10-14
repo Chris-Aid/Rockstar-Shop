@@ -12,6 +12,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { BasketComponent } from './basket/basket.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatCardModule,
     MatSidenavModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    FormsModule,
+    Ng2SearchPipeModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

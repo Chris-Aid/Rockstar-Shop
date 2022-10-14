@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, setTestabilityGetter, ViewChild } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { SharedService } from '../shared.service';
 
 @Component({
@@ -10,24 +10,26 @@ export class ShopComponent implements OnInit {
 
   constructor(public shared: SharedService) { }
 
+  availableCategories = [];
   items;
   flipped = false;
   itemsLimit = 10;
   maxItems = false;
+  category: any;
 
   ngOnInit(): void {
     this.fethItems();
     this.getItemsFromLocalStorage();
+    // this.fillCategories();
   }
 
-
-  // fetches first ten items of shopping API and pushes them to array
   fethItems() {
     fetch(`https://fakestoreapi.com/products?limit=${this.itemsLimit}`)
       .then(res => res.json())
       .then(json => {
         this.items = json;
         this.addAmount();
+        console.log(this.items)
       });
   }
 
@@ -43,10 +45,10 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  saveToBasket(i) {
+  saveToBasket(item, i) {
     // finding out if item was already pushed to basket
     const alreadyExists = this.shared.basket.some(element => {
-      if (element.id === this.items[i].id) {
+      if (element.title === item.title) {
         return true;
       }
       return false;
@@ -54,12 +56,13 @@ export class ShopComponent implements OnInit {
 
     // if the item is already in the shopping cart the quantity will be increased
     if (!alreadyExists) {
-      this.shared.basket.push(this.items[i]);
+      this.shared.basket.push(item);
     } else {
       this.increaseAmount(i)
     }
 
     window.localStorage.setItem('items', JSON.stringify(this.shared.basket));
+    console.log(i)
   }
 
   // function figures out which item was clicket and increased right amount
@@ -100,11 +103,11 @@ export class ShopComponent implements OnInit {
   }
 
   // function finds out the amount of each product in basket
-  getAmount(i) {
+  getAmount(item) {
     for (let j = 0; j < this.shared.basket.length; j++) {
       const basketItem = this.shared.basket[j];
 
-      if (this.items[i].title == basketItem.title) {
+      if (item.title == basketItem.title) {
         let currentAmount = basketItem.amount;
         return currentAmount;
       }

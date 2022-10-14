@@ -1,16 +1,23 @@
+<div class="optionContainer">
+  <mat-form-field class="example-form-field" appearance="fill">
+    <input autofocus matInput type="input" matInput name="search" type="text" [(ngModel)]="category"
+      placeholder="search for products" />
+  </mat-form-field>
+</div>
+
 <div class="gridContainer">
-  <mat-card (mouseover)="over(i)" (mouseout)="out(i)" (click)="saveToBasket(i)" id="card{{i}}"
-    *ngFor="let item of items; let i = index" class="itemCard">
+  <mat-card (mouseover)="over(i)" (mouseout)="out(i)" (click)="saveToBasket(item, i)" id="card{{i}}"
+    *ngFor="let item of items | filter : category; let i = index" class="itemCard">
     <img src={{item.image}} alt="product image">
     <mat-card-header>
       <mat-card-title>{{item.title}}</mat-card-title>
       <mat-card-title>{{item.price}} €</mat-card-title>
       <mat-card-subtitle>{{item.category}}</mat-card-subtitle>
     </mat-card-header>
-    <div id="cardBack{{i}}" (click)="saveToBasket(i)" class="cardSlider">
+    <div id="cardBack{{i}}" (click)="saveToBasket(item, i)" class="cardSlider">
       <div style="position: relative;">
-        <div *ngIf="getAmount(i) > 0" class="amountInfo">
-          <p>{{getAmount(i)}}</p>
+        <div *ngIf="getAmount(item) > 0" class="amountInfo">
+          <p>{{getAmount(item)}}</p>
         </div>
         <img class="addIcon" src="assets/img/addToBasket.png" alt="add item">
       </div>
