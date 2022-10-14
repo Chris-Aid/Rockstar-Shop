@@ -20,7 +20,6 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
     this.fethItems();
     this.getItemsFromLocalStorage();
-    // this.fillCategories();
   }
 
   fethItems() {
