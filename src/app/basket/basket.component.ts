@@ -8,9 +8,7 @@ import { SharedService } from '../shared.service';
 })
 export class BasketComponent implements OnInit {
 
-
   amount: number = 1;
-
   minimumAmount: number = 100;
   shipping: number;
   subtotal: number = 0;
@@ -22,12 +20,14 @@ export class BasketComponent implements OnInit {
     this.getItemsFromLocalStorage();
   }
 
+  // gets item that are stored in basket
   getItemsFromLocalStorage() {
     this.shared.basket = JSON.parse(window.localStorage.getItem('items'));
     this.getShipping();
     this.getSum();
   }
 
+  // function calculates the sum depended on product prices and shipping fee
   getSum() {
     this.subtotal = 0;
     for (let i = 0; i < this.shared.basket.length; i++) {
@@ -38,9 +38,12 @@ export class BasketComponent implements OnInit {
 
     this.getShipping();
     this.sum = this.subtotal + this.shipping;
+
+    // updates array in local storage every time the increasing or decreasing function is called
     window.localStorage.setItem('items', JSON.stringify(this.shared.basket));
   }
 
+  // function sets shipping fees based on sum of product prices
   getShipping() {
     if (this.subtotal < this.minimumAmount && this.subtotal > 0) {
       this.shipping = 4.99;
@@ -53,6 +56,7 @@ export class BasketComponent implements OnInit {
     let a = this.shared.basket[i]['amount'];
     a++
     this.shared.basket[i]['amount'] = a;
+
     this.getSum();
   }
 

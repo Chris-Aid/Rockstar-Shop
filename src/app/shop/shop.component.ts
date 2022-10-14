@@ -8,8 +8,6 @@ import { SharedService } from '../shared.service';
 })
 export class ShopComponent implements OnInit {
 
-  hover: boolean = false;
-
   constructor(public shared: SharedService) { }
 
   items;
@@ -17,12 +15,13 @@ export class ShopComponent implements OnInit {
   itemsLimit = 10;
   maxItems = false;
 
-
   ngOnInit(): void {
     this.fethItems();
     this.getItemsFromLocalStorage();
   }
 
+
+  // fetches first ten items of shopping API and pushes them to array
   fethItems() {
     fetch(`https://fakestoreapi.com/products?limit=${this.itemsLimit}`)
       .then(res => res.json())
@@ -36,6 +35,7 @@ export class ShopComponent implements OnInit {
     this.shared.basket = JSON.parse(window.localStorage.getItem('items'));
   }
 
+  // function updates objects that are stored in array and adds amount for price calculation
   addAmount() {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
@@ -44,6 +44,7 @@ export class ShopComponent implements OnInit {
   }
 
   saveToBasket(i) {
+    // finding out if item was already pushed to basket
     const alreadyExists = this.shared.basket.some(element => {
       if (element.id === this.items[i].id) {
         return true;
@@ -51,6 +52,7 @@ export class ShopComponent implements OnInit {
       return false;
     });
 
+    // if the item is already in the shopping cart the quantity will be increased
     if (!alreadyExists) {
       this.shared.basket.push(this.items[i]);
     } else {
@@ -60,6 +62,7 @@ export class ShopComponent implements OnInit {
     window.localStorage.setItem('items', JSON.stringify(this.shared.basket));
   }
 
+  // function figures out which item was clicket and increased right amount
   increaseAmount(i) {
     for (let j = 0; j < this.shared.basket.length; j++) {
       const basketItem = this.shared.basket[j];
@@ -72,12 +75,14 @@ export class ShopComponent implements OnInit {
     }
   }
 
+  // increases limit of fetched items 
   moreItems() {
     this.maxItems = true;
     this.itemsLimit = 20;
     this.fethItems();
   }
 
+  // reduces limit of fetched items 
   lessItems() {
     this.maxItems = false;
     this.itemsLimit = 10;
@@ -94,6 +99,7 @@ export class ShopComponent implements OnInit {
     document.getElementById(`cardBack${i}`).classList.remove('addToBasket')
   }
 
+  // function finds out the amount of each product in basket
   getAmount(i) {
     for (let j = 0; j < this.shared.basket.length; j++) {
       const basketItem = this.shared.basket[j];

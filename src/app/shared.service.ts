@@ -6,11 +6,6 @@ import { Injectable } from '@angular/core';
 export class SharedService {
 
   basket = [];
-  counter = [];
 
   constructor() { }
-
-  // getItems() {
-  //   return JSON.parse(window.localStorage.getItem('items'))
-  // }
 }
